@@ -5,7 +5,7 @@
 	<title>Althea Node Locator</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-	<script src="ADD STUFF HERE"></script>	
+	<script src="https://maps.googleapis.com/maps/api/js?key=<YOUR API KEY HERE>"></script>
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
@@ -17,17 +17,20 @@
 			<div>
 				<label for="user_email_input">Email Address:</label>
 				<br>
-				<input type="email" id="user_email_input" name="user_email_input" class="form_control" placeholder="required" autocomplete="off" maxlength="25" required>
+				<input type="email" id="user_email_input" name="user_email_input" class="form_control" placeholder="required" autocomplete="off"
+				 maxlength="25" required>
 			</div>
 			<div>
 				<label for="user_fname_input">First Name:</label>
 				<br>
-				<input type="text" id="user_fname_input" name="user_fname_input" class="form_control" placeholder="optional" autocomplete="off" maxlength="15" required>
+				<input type="text" id="user_fname_input" name="user_fname_input" class="form_control" placeholder="optional" autocomplete="off"
+				 maxlength="15" required>
 			</div>
 			<div>
 				<label for="user_lname_input">Last Name:</label>
 				<br>
-				<input type="text" id="user_lname_input" name="user_lname_input" class="form_control" placeholder="optional" autocomplete="off" maxlength="15" required>
+				<input type="text" id="user_lname_input" name="user_lname_input" class="form_control" placeholder="optional" autocomplete="off"
+				 maxlength="15" required>
 			</div>
 			<div>
 				<label for="user_country_menu">Country:</label>
@@ -287,23 +290,26 @@
 			<div>
 				<label name="user_city_input">City:</label>
 				<br>
-				<input type="text" id="user_city_input" name="user_city_input" class="form_control" autocomplete="off" placeholder="required" maxlength="20" required/>
+				<input type="text" id="user_city_input" name="user_city_input" class="form_control" autocomplete="off" placeholder="required"
+				 maxlength="20" required/>
 			</div>
 			<div>
 				<label name="user_zip_code_input">Zip/Postal Code:</label>
 				<br>
-				<input type="text" id="user_zip_code_input" name="user_zip_code_input" class="form_control" autocomplete="off" placeholder="optional" maxlength="15" />
+				<input type="text" id="user_zip_code_input" name="user_zip_code_input" class="form_control" autocomplete="off" placeholder="optional"
+				 maxlength="15" />
 			</div>
 			<div>
-				<div class="g-recaptcha"
-               data-sitekey="ADD STUFF HERE">
-            </div>
+				<div class="g-recaptcha" data-sitekey="<YOUR API KEY HERE>">
+				</div>
 			</div>
-			<input type="submit" id="submit" value="Submit" />
-		</form>
-		<button onclick="Module.resetView()">Reset View</button>
+	</div>
+	<input type="submit" id="submit" value="Submit" />
+	</form>
+	<button onclick="Module.resetView()">Reset View</button>
 	</div>
 	<script type="text/javascript" src="./scripts/markerclusterer.js"></script>
 	<script type="text/javascript" src="./scripts/app.js"></script>
 </body>
+
 </html>

@@ -2,6 +2,8 @@
 
 The Node Locator utilizes Google Maps API + Firebase Realtime Database to provide a visual representation of the approximate location of potential nodes in the althea network.
 
+![Alt Text](http://res.cloudinary.com/dcgnyswpg/video/upload/v1519356640/Peek_2018-02-22_22-21_ldoxzn.mp4)
+
 # Getting Started
 
 To begin you will need to install and configure Firebase CLI if you do not already have it. This must be done for code to be deployed to the Firebase Cloud Function server.

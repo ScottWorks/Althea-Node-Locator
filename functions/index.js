@@ -7,11 +7,8 @@ const rp = require("request-promise");
 firebaseAdmin.initializeApp(firebaseFunc.config().firebase);
 
 var options = {
-  provider: "google",
-  httpAdapter: "https",
-  apiKey: "AIzaSyAtQIagagwPv__m6F38ZK1TADy0OQJ48dE",
-  formatter: null
-};
+  "ADD STUFF HERE"
+ };
 
 var geocoder = nodeGeocoder(options);
 

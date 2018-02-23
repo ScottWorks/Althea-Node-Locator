@@ -1,10 +1,10 @@
+# Althea Node Locator
 
-# Althea Node Locator 
-v0.2 The Node Locator utilizes Google Maps API + Firebase Realtime Database to provide a visual representation of the approximate location of potential nodes in the althea network. 
-
+The Node Locator utilizes Google Maps API + Firebase Realtime Database to provide a visual representation of the approximate location of potential nodes in the althea network.
 
 # Getting Started
-To begin you will need to install and configure Firebase CLI if you do not already have it. This must be done for code to be deployed to the Firebase Cloud Function server. 
+
+To begin you will need to install and configure Firebase CLI if you do not already have it. This must be done for code to be deployed to the Firebase Cloud Function server.
 
 To install the Firebase CLI, you first need to [sign up for a Firebase account](https://firebase.google.com/).
 
@@ -16,18 +16,64 @@ Once npm is installed, get the Firebase CLI by running the following command:
 
 This will provide you with the globally accessible firebase command.
 
-From the working directory's terminal, enter the following command to download all of the necessary packages. 
+In the terminal change the current directory to the functions directory, enter the following command to download all of the necessary packages in the functions directory.
 
 > npm install
 
-Next you will need to get [RECAPTCHA](https://codelabs.developers.google.com/codelabs/reCAPTCHA/index.html#0) and [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key) API keys. Keys required for Firebase should be available after logging into [Firebase's website](https://firebase.google.com/). Enter the API keys and other data where necessary in the index.html, index.js, and app.js files.
+Change the back to the top level of the project, in the terminal enter
 
-Once you have Firebase CLI ready you can deploy the app from the working directory using: 
+> firebase setup:web
+
+Firebase will provide an output that must be copied and pasted into the app.js file. 
+
+```
+firebase.initializeApp({
+  "apiKey": "<YOUR API KEY>",
+  "databaseURL": "https://<YOUR PROJECT ID>.firebaseio.com",
+  "storageBucket": "<YOUR PROJECT ID>.appspot.com",
+  "authDomain": "<YOUR PROJECT ID>.firebaseapp.com",
+  "messagingSenderId": "<MESSAGING SENDER ID>",
+  "projectId": "<YOUR PROJECT ID>"
+});
+```
+
+In the .firebaserc file replace deafult vaue to your the project ID provided previously.
+
+```
+{
+  "projects": {
+    "default": "<YOUR PROJECT ID>"
+  }
+}
+``` 
+
+Next you will need to get an API key from [RECAPTCHA](https://www.google.com/recaptcha/admin#list). Under the 'register a new site' section select reCAPTCHA V2, then proceed to add the appropiate domain(s) that will be required for your web application.
+
+Under 'Keys' copy the 'Site Key' then paste it in the data-sitekey field of index.html. Then copy the 'Secret Key' and paste it in the secret field of index.js. 
+
+For the [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key) API keys, select 'Get A Key', create a new Project, then copy-paste the API key into the following files:
+
+index.html
+```
+<script src="https://maps.googleapis.com/maps/api/js?key=<YOUR API KEY>"></script>
+``` 
+
+index.js
+```
+var options = {
+  provider: "google",
+  httpAdapter: "https",
+  apiKey: "<YOUR API KEY>",
+  formatter: null
+};
+```
+
+
+Once you have the API Keys and Firebase CLI ready you can deploy the app from the working directory using:
 
 > firebase deploy
 
 When the deployment completes successfully you will copy/ paste the **Hosting URL** into your web browser.
 
-
-* Notes: 
-    * Ensure you have setup RECAPTCHA such that it will function on the your [websites domain](https://developers.google.com/recaptcha/docs/domain_validation). If you are running this application locally set the domain in RECAPTCHA to 127.0.0.1 and use 127.0.0.1:3000 in the browser
+* Notes:
+  * Ensure you have setup RECAPTCHA such that it will function on the your [websites domain](https://developers.google.com/recaptcha/docs/domain_validation). If you are running this application locally set the domain in RECAPTCHA to 127.0.0.1 and use 127.0.0.1:3000 in the browser

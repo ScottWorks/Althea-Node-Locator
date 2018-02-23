@@ -7,8 +7,11 @@ const rp = require("request-promise");
 firebaseAdmin.initializeApp(firebaseFunc.config().firebase);
 
 var options = {
-  "ADD STUFF HERE"
- };
+  provider: " ",
+  httpAdapter: " ",
+  apiKey: " ",
+  formatter: null
+};
 
 var geocoder = nodeGeocoder(options);
 
@@ -28,7 +31,7 @@ exports.submit = firebaseFunc.https.onRequest((req, res) => {
     uri: "https://recaptcha.google.com/recaptcha/api/siteverify",
     method: "POST",
     formData: {
-      secret: "6LeopD8UAAAAALTKnD0jUog0tmE4Xvm_ofL128JM",
+      secret: " ",
       response: recaptchaResponse
     },
     json: true

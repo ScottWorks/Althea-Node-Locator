@@ -20,6 +20,8 @@ In the terminal change the current directory to the functions directory, enter t
 
 > npm install
 
+## Firebase Setup
+
 Change the back to the top level of the project, in the terminal enter
 
 > firebase setup:web
@@ -47,9 +49,13 @@ In the .firebaserc file replace deafult vaue to your the project ID provided pre
 }
 ``` 
 
+## RECAPTCHA Setup
+
 Next you will need to get an API key from [RECAPTCHA](https://www.google.com/recaptcha/admin#list). Under the 'register a new site' section select reCAPTCHA V2, then proceed to add the appropiate domain(s) that will be required for your web application.
 
 Under 'Keys' copy the 'Site Key' then paste it in the data-sitekey field of index.html. Then copy the 'Secret Key' and paste it in the secret field of index.js. 
+
+## Google Maps Setup
 
 For the [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key) API keys, select 'Get A Key', create a new Project, then copy-paste the API key into the following files:
 
@@ -68,6 +74,28 @@ var options = {
 };
 ```
 
+## Firebase Database Setup
+
+Before you are able to read or write to the firebase database you must change the default permissions. In the firebase [console](https://firebase.google.com/) navigate to the real time database section, select 'Get Started'. Under the 'Rules' tab copy and paste the following:
+
+```
+{
+  "rules": {
+    "Country":{
+    ".read": false,
+    ".write": "auth != null"      
+    },
+    "Markers":{
+    ".read": true,
+    ".write": "auth != null"      
+    }
+  }
+}
+```
+
+These rules are set such that only the Markers can be read by the client, and firebase's cloud functions can write to the database (or anyone with sufficent credentials). 
+
+## Deploying to Firebase
 
 Once you have the API Keys and Firebase CLI ready you can deploy the app from the working directory using:
 

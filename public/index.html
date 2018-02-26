@@ -5,7 +5,7 @@
 	<title>Althea Node Locator</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=<YOUR API KEY HERE>"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtQIagagwPv__m6F38ZK1TADy0OQJ48dE"></script>
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
@@ -13,7 +13,7 @@
 	<div id="map"></div>
 	<div class="user_form">
 		<iframe name="votar" style="display:none;"></iframe>
-		<form action="/submit" method="POST" target="votar">
+		<form action="https://althea-locator.firebaseapp.com/submit" method="POST" target="votar">
 			<div>
 				<label for="user_email_input">Email Address:</label>
 				<br>
@@ -300,11 +300,11 @@
 				 maxlength="15" />
 			</div>
 			<div>
-				<div class="g-recaptcha" data-sitekey="<YOUR API KEY HERE>">
+				<div class="g-recaptcha" data-sitekey="6LeopD8UAAAAAGQ6b98202chGMEYdsXBAoOly_Zk" data-callback="recaptchaCallback">
 				</div>
 			</div>
 	</div>
-	<input type="submit" id="submit" value="Submit" />
+	<input type="submit" id="submit" value="Submit" disabled/>
 	</form>
 	<button onclick="Module.resetView()">Reset View</button>
 	</div>

@@ -1,15 +1,18 @@
 
+function recaptchaCallback() {
+  document.getElementById("submit").removeAttribute("disabled");
+}
+
 var Module = (function () {
 
   firebase.initializeApp({
-    "apiKey": "<ADD YOUR INFO HERE>",
-    "databaseURL": "<ADD YOUR INFO HERE>",
-    "storageBucket": "<ADD YOUR INFO HERE>",
-    "authDomain": "<ADD YOUR INFO HERE>",
-    "messagingSenderId": "<ADD YOUR INFO HERE>",
-    "projectId": "<ADD YOUR INFO HERE>"
+    "apiKey": "AIzaSyBhifPuU09GpDgshChybUMWiLw6GsTfc4o",
+    "databaseURL": "https://althea-locator.firebaseio.com",
+    "storageBucket": "althea-locator.appspot.com",
+    "authDomain": "althea-locator.firebaseapp.com",
+    "messagingSenderId": "569457338008",
+    "projectId": "althea-locator"
   });
-
   var emailAddr = document.getElementById("user_email_input");
   var firstName = document.getElementById("user_fname_input");
   var lastName = document.getElementById("user_lname_input");
@@ -38,16 +41,20 @@ var Module = (function () {
       zoom: 2
     });
 
-    markerArr = [];
+    let markerArr = [];
 
     markerCluster = new MarkerClusterer(map, markerArr, {
       imagePath: "./resources/m"
     });
 
-    readFromFirebase(map, markerCluster);
+    readFromFirebase(map);
+
+    return map;
   }
 
-  function readFromFirebase(map, markerCluster) {
+  function readFromFirebase(map) {
+    markerArr = [];
+
     // Query data base for stored location
     var fireDataBase = firebase
       .database()
@@ -56,23 +63,16 @@ var Module = (function () {
 
     fireDataBase.on("child_added", function (snapshot) {
       var storedData = snapshot.val();
-      var keys = Object.keys(storedData);
 
-      for (var i = 0; i < keys.length; i++) {
-        var k = keys[i];
-        var storedLat = storedData[k].Latitude;
-        var storedLng = storedData[k].Longitude;
-
-        // Updates map with stored marker
-        var marker = new google.maps.Marker({
-          position: {
-            lat: parseFloat(storedLat),
-            lng: parseFloat(storedLng)
-          }
-        });
-        marker.setMap(map);
-        markerArr.push(marker);
-      }
+      // Updates map with stored marker
+      var marker = new google.maps.Marker({
+        position: {
+          lat: parseFloat(storedData.GPS_Coordinates.Latitude),
+          lng: parseFloat(storedData.GPS_Coordinates.Longitude)
+        }
+      });
+      marker.setMap(map);
+      markerArr.push(marker);
       markerCluster.addMarkers(markerArr);
     });
   }
@@ -87,10 +87,6 @@ var Module = (function () {
         if (status === "OK") {
           resultsMap.setCenter(results[0].geometry.location);
           resultsMap.setZoom(14);
-          var marker = new google.maps.Marker({
-            position: results[0].geometry.location,
-            map: resultsMap
-          });
         } else {
           alert(
             "Geocode was not successful for the following reason: " + status
@@ -102,6 +98,6 @@ var Module = (function () {
 
   return {
     initMap: initMap,
-    resetView: resetView
+    resetView: resetView,
   };
 })();

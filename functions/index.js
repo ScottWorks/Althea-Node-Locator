@@ -7,9 +7,9 @@ const rp = require("request-promise");
 firebaseAdmin.initializeApp(firebaseFunc.config().firebase);
 
 var options = {
-  provider: " ",
-  httpAdapter: " ",
-  apiKey: " ",
+  provider: "google",
+  httpAdapter: "https",
+  apiKey: "AIzaSyAtQIagagwPv__m6F38ZK1TADy0OQJ48dE",
   formatter: null
 };
 
@@ -31,21 +31,27 @@ exports.submit = firebaseFunc.https.onRequest((req, res) => {
     uri: "https://recaptcha.google.com/recaptcha/api/siteverify",
     method: "POST",
     formData: {
-      secret: " ",
+      secret: "6LeopD8UAAAAALTKnD0jUog0tmE4Xvm_ofL128JM",
       response: recaptchaResponse
     },
     json: true
   })
     .then((result) => {
       if (result.success) {
+        const id = Math.random();
         geocoder.geocode(address, function (err, geoCoderResult) {
+          if (err) {
+            console.log('error!')
+            res.status(500).end("Geocoder failed.")
+          }
           firebaseAdmin
             .database()
             .ref("Country/" + country)
             .push()
             .set({
               Metadata: {
-                Timestamp: firebaseAdmin.database.ServerValue.TIMESTAMP
+                Timestamp: firebaseAdmin.database.ServerValue.TIMESTAMP,
+                ID: id
               },
               User_Information: {
                 First_Name: firstName,
@@ -69,7 +75,8 @@ exports.submit = firebaseFunc.https.onRequest((req, res) => {
             .push()
             .set({
               Metadata: {
-                Timestamp: firebaseAdmin.database.ServerValue.TIMESTAMP
+                Timestamp: firebaseAdmin.database.ServerValue.TIMESTAMP,
+                ID: id
               },
               GPS_Coordinates: {
                 Latitude: geoCoderResult[0].latitude,

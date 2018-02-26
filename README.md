@@ -1,11 +1,11 @@
 # Althea Node Locator
 
-The Node Locator utilizes Google Maps API + Firebase Realtime Database to provide a visual representation of the approximate location of potential nodes in the althea network.
+The Node Locator utilizes Google Maps API + Firebase Realtime Database to provide a visual representation of the approximate location of potential nodes in the althea network. This application can be integrated into website or platform that requires the collection of user data that can be displayed on a map. 
 
 ### Generic Node-Locator
 ![Alt Text](http://res.cloudinary.com/dcgnyswpg/image/upload/v1519434259/demo2-screenshot_ck37tv.png)
 
-### [Althea Mesh Node-Locator](altheamesh.com)
+### [Althea Mesh Node-Locator](https://altheamesh.com/)
 ![Alt Text](http://res.cloudinary.com/dcgnyswpg/image/upload/v1519432417/demo-screenshot_epd4jg.png)
 
 
